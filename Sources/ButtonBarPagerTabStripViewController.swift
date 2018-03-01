@@ -235,8 +235,8 @@ open class ButtonBarPagerTabStripViewController: PagerTabStripViewController, Pa
         if let changeCurrentIndex = changeCurrentIndex {
             let oldIndexPath = IndexPath(item: currentIndex != fromIndex ? fromIndex : toIndex, section: 0)
             let newIndexPath = IndexPath(item: currentIndex, section: 0)
-
-            let cells = cellForItems(at: [oldIndexPath, newIndexPath], reloadIfNotVisible: collectionViewDidLoad)
+            let indicatorIndexPaths = (oldIndexPath.row == newIndexPath.row) ? [oldIndexPath] : [oldIndexPath, newIndexPath]
+            let cells = cellForItems(at: indicatorIndexPaths, reloadIfNotVisible: collectionViewDidLoad)
             changeCurrentIndex(cells.first!, cells.last!, true)
         }
     }
@@ -247,8 +247,8 @@ open class ButtonBarPagerTabStripViewController: PagerTabStripViewController, Pa
         if let changeCurrentIndexProgressive = changeCurrentIndexProgressive {
             let oldIndexPath = IndexPath(item: currentIndex != fromIndex ? fromIndex : toIndex, section: 0)
             let newIndexPath = IndexPath(item: currentIndex, section: 0)
-
-            let cells = cellForItems(at: [oldIndexPath, newIndexPath], reloadIfNotVisible: collectionViewDidLoad)
+            let indicatorIndexPaths = (oldIndexPath.row == newIndexPath.row) ? [oldIndexPath] : [oldIndexPath, newIndexPath]
+            let cells = cellForItems(at: indicatorIndexPaths, reloadIfNotVisible: collectionViewDidLoad)
             changeCurrentIndexProgressive(cells.first!, cells.last!, progressPercentage, indexWasChanged, true)
         }
     }
@@ -291,8 +291,8 @@ open class ButtonBarPagerTabStripViewController: PagerTabStripViewController, Pa
 
         let oldIndexPath = IndexPath(item: currentIndex, section: 0)
         let newIndexPath = IndexPath(item: indexPath.item, section: 0)
-
-        let cells = cellForItems(at: [oldIndexPath, newIndexPath], reloadIfNotVisible: collectionViewDidLoad)
+        let indicatorIndexPaths = (oldIndexPath.row == newIndexPath.row) ? [oldIndexPath] : [oldIndexPath, newIndexPath]
+        let cells = cellForItems(at: indicatorIndexPaths, reloadIfNotVisible: collectionViewDidLoad)
 
         if pagerBehaviour.isProgressiveIndicator {
             if let changeCurrentIndexProgressive = changeCurrentIndexProgressive {
