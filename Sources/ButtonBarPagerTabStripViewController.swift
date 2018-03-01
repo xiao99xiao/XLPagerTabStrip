@@ -254,6 +254,7 @@ open class ButtonBarPagerTabStripViewController: PagerTabStripViewController, Pa
     }
 
     private func cellForItems(at indexPaths: [IndexPath], reloadIfNotVisible reload: Bool = true) -> [ButtonBarViewCell?] {
+        let indexPaths = Array(Set(indexPaths))
         let cells = indexPaths.map { buttonBarView.cellForItem(at: $0) as? ButtonBarViewCell }
 
         if reload {
